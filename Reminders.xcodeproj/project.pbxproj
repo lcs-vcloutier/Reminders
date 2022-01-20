@@ -16,6 +16,8 @@
 		92BB36B42799C2C90018629F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BB36B32799C2C90018629F /* Task.swift */; };
 		92BB36B62799C3210018629F /* TaskPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BB36B52799C3210018629F /* TaskPriority.swift */; };
 		92BB36B92799C3560018629F /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BB36B82799C3560018629F /* TaskStore.swift */; };
+		92BB36BB2799C6C40018629F /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BB36BA2799C6C40018629F /* TaskCell.swift */; };
+		92BB36BC2799C6C40018629F /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BB36BA2799C6C40018629F /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,7 @@
 		92BB36B32799C2C90018629F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		92BB36B52799C3210018629F /* TaskPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPriority.swift; sourceTree = "<group>"; };
 		92BB36B82799C3560018629F /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
+		92BB36BA2799C6C40018629F /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				92BB36932799C24F0018629F /* ContentView.swift */,
+				92BB36BA2799C6C40018629F /* TaskCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,6 +217,7 @@
 				92BB36A42799C2500018629F /* ContentView.swift in Sources */,
 				92BB36B42799C2C90018629F /* Task.swift in Sources */,
 				92BB36B62799C3210018629F /* TaskPriority.swift in Sources */,
+				92BB36BB2799C6C40018629F /* TaskCell.swift in Sources */,
 				92BB36A22799C2500018629F /* RemindersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92BB36A52799C2500018629F /* ContentView.swift in Sources */,
+				92BB36BC2799C6C40018629F /* TaskCell.swift in Sources */,
 				92BB36A32799C2500018629F /* RemindersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
