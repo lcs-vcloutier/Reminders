@@ -11,6 +11,8 @@ struct AddTask: View {
     // New Task Details
     @State private var description = ""
     @State private var priority = TaskPriority.low
+    // Whether to show this view
+    @Binding var showing: Bool
     var body: some View {
         // Add one because this will be used in a sheet
         NavigationView {
@@ -37,6 +39,6 @@ struct AddTask: View {
     }
     
     func saveTask() {
-        
+        showing = false
     }
 }
