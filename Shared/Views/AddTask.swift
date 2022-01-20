@@ -8,16 +8,11 @@
 import SwiftUI
 
 struct AddTask: View {
-    
-    // Reference to TaskStore
     @ObservedObject var store: TaskStore
-    // New Task Details
     @State private var description = ""
     @State private var priority = TaskPriority.low
-    // Whether to show this view
     @Binding var showing: Bool
     var body: some View {
-        // Add one because this will be used in a sheet
         NavigationView {
             VStack {
                 Form {
@@ -34,17 +29,11 @@ struct AddTask: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {
-                        saveTask()
+                        store.saveTask(description: description, priority: priority)
+                        showing = false
                     }
                 }
             }
         }
-    }
-    
-    func saveTask() {
-        store.tasks.append(Task(description: description,
-                                priority: priority,
-                                completed: false))
-        showing = false
     }
 }

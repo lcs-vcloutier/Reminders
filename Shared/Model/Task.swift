@@ -6,14 +6,22 @@
 //
 
 import Foundation
-
+import SwiftUI
 class Task: Identifiable, ObservableObject {
     var id = UUID()
     var description: String
     var priority: TaskPriority
-    // Watch for changes
+    var taskColor: Color {
+        switch priority {
+        case .high:
+            return Color.red
+        case .medium:
+            return Color.blue
+        case .low:
+            return Color.primary
+        }
+    }
     @Published var completed: Bool
-    // Memberwise shortcut
     internal init(id: UUID = UUID(), description: String, priority: TaskPriority, completed: Bool) {
         self.id = id
         self.description = description
