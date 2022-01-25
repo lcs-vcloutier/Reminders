@@ -17,21 +17,6 @@ struct ContentView: View {
         let _ = print("\(listShouldUpdate)")
         
         VStack {
-            Menu {
-                Button(showingCompletedTasks ? "Hide Completed Tasks" : "Show Completed Tasks") {
-                    showingCompletedTasks.toggle()
-                }
-                Picker("Priority Filter", selection: $selectedPriorityForVisibleTasks) {
-                    Text(VisibleTaskPriority.all.rawValue).tag(VisibleTaskPriority.all)
-                    Text(VisibleTaskPriority.low.rawValue).tag(VisibleTaskPriority.low)
-                    Text(VisibleTaskPriority.medium.rawValue).tag(VisibleTaskPriority.medium)
-                    Text(VisibleTaskPriority.high.rawValue).tag(VisibleTaskPriority.high)
-                }
-                .pickerStyle(MenuPickerStyle())
-            } label: {
-                Image(systemName: "line.3.horizontal.circle")
-            }
-            
             List {
                 ForEach(store.tasks) { task in
                     if showingCompletedTasks {
@@ -60,8 +45,22 @@ struct ContentView: View {
             .navigationTitle("Reminders")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button("Add") {
-                        showingAddTask = true
+                    Menu {
+                        Button("Add a task") {
+                            showingAddTask = true
+                        }
+                        Button(showingCompletedTasks ? "Hide completed tasks" : "Show completed tasks") {
+                            showingCompletedTasks.toggle()
+                        }
+                        Picker("Filter tasks by priority", selection: $selectedPriorityForVisibleTasks) {
+                            Text(VisibleTaskPriority.all.rawValue).tag(VisibleTaskPriority.all)
+                            Text(VisibleTaskPriority.low.rawValue).tag(VisibleTaskPriority.low)
+                            Text(VisibleTaskPriority.medium.rawValue).tag(VisibleTaskPriority.medium)
+                            Text(VisibleTaskPriority.high.rawValue).tag(VisibleTaskPriority.high)
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                    } label: {
+                        Image(systemName: "line.3.horizontal.circle")
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
