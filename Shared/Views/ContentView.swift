@@ -15,7 +15,6 @@ struct ContentView: View {
     @State private var selectedPriorityForVisibleTasks: VisibleTaskPriority = .all
     var body: some View {
         let _ = print("\(listShouldUpdate)")
-        
         VStack {
             List {
                 ForEach(store.tasks) { task in
