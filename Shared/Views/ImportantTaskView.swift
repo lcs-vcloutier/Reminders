@@ -11,9 +11,10 @@ struct ImportantTaskView: View {
     @ObservedObject var store: TaskStore
     @State private var showingAddTask = false
     @State var showingCompletedTasks = true
+    @State var listShouldUpdate = false
     var body: some View {
         List {
-            ForEach(store.tasks) { task in     
+            ForEach(store.tasks) { task in
                 if showingCompletedTasks {
                     if task.priority == .high {
                         TaskCell(task: task, triggerListUpdate: .constant(true))
@@ -31,13 +32,6 @@ struct ImportantTaskView: View {
         }
         .navigationTitle("Important")
         .toolbar {
-            ToolbarItem {
-                Button {
-                    showingAddTask = true
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     showingCompletedTasks.toggle()
