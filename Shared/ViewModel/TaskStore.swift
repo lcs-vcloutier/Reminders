@@ -13,6 +13,7 @@ class TaskStore: ObservableObject {
     init(tasks: [Task] = []) {
         self.tasks = tasks
     }
+    
     func saveTask(description: String, priority: TaskPriority) {
         tasks.append(Task(description: description,
                           priority: priority,
