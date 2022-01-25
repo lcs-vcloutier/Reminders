@@ -44,11 +44,16 @@ struct ContentView: View {
             }
             .navigationTitle("Reminders")
             .toolbar {
+                ToolbarItem {
+                    Button {
+                        showingAddTask = true
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
-                        Button("Add a task") {
-                            showingAddTask = true
-                        }
                         Button(showingCompletedTasks ? "Hide completed tasks" : "Show completed tasks") {
                             showingCompletedTasks.toggle()
                         }
