@@ -14,7 +14,13 @@ struct ContentView: View {
     var body: some View {
         List {
             ForEach(store.tasks) { task in
-                TaskCell(task: task)
+                if showingCompletedTasks {
+                    TaskCell(task: task)
+                } else {
+                    if !task.completed {
+                        TaskCell(task: task)
+                    }
+                }
             }
             .onDelete(perform: store.deleteItems)
             .onMove(perform: store.moveItems)
@@ -27,7 +33,7 @@ struct ContentView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarLeading) {
-               EditButton()
+                EditButton()
             }
             ToolbarItem(placement: .bottomBar) {
                 Button(showingCompletedTasks ? "Hide Completed Tasks" : "Show Completed Tasks") {
