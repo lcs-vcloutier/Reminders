@@ -11,14 +11,16 @@ struct ContentView: View {
     @ObservedObject var store: TaskStore
     @State private var showingAddTask = false
     @State var showingCompletedTasks = true
+    @State var listShouldUpdate = false
     var body: some View {
+        let _ = print("\(listShouldUpdate)")
         List {
             ForEach(store.tasks) { task in
                 if showingCompletedTasks {
-                    TaskCell(task: task)
+                    TaskCell(task: task, triggerListUpdate: .constant(true))
                 } else {
                     if !task.completed {
-                        TaskCell(task: task)
+                        TaskCell(task: task, triggerListUpdate: $listShouldUpdate)
                     }
                 }
             }
