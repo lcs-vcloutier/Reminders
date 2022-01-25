@@ -33,6 +33,11 @@ struct AddTask: View {
                         showing = false
                     }
                 }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        showing = false
+                    }
+                }
             }
         }
     }
