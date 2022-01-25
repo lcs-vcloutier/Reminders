@@ -9,12 +9,22 @@ import Foundation
 import UIKit
 
 class TaskStore: ObservableObject {
+    
     // MARK: Stored propeties
     @Published var tasks: [Task]
+    
     // MARK: Initializers
     init(tasks: [Task] = []) {
-        self.tasks = tasks
+        let filename = getDocumentsDirectory().appendingPathComponent(savedTasksLabel)
+        do {
+            let data = try Data(contentsOf: filename)
+            self.tasks = try JSONDecoder().decode([Task].self, from: data)
+        } catch {
+            print(error.localizedDescription)
+            self.tasks = tasks
+        }
     }
+    
     // MARK: Functions
     func deleteItems(at offsets: IndexSet) {
         tasks.remove(atOffsets: offsets)
@@ -24,6 +34,17 @@ class TaskStore: ObservableObject {
     }
     func saveTask(description: String, priority: TaskPriority) {
         tasks.append(Task(description: description, priority: priority, completed: false))
+    }
+    func persistTasks() {
+        let filename = getDocumentsDirectory().appendingPathComponent(savedTasksLabel)
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(self.tasks)
+            try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 

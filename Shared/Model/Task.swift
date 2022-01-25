@@ -7,26 +7,41 @@
 
 import Foundation
 import SwiftUI
-class Task: Identifiable, ObservableObject {
+
+enum TaskCodingKeys: CodingKey {
+    case description
+    case priority
+    case completed
+}
+
+class Task: Identifiable, ObservableObject, Codable {
+    
+    // MARK: Stored Properties
     var id = UUID()
     var description: String
     var priority: TaskPriority
-    var taskColor: Color {
-        switch priority {
-        case .high:
-            return Color.red
-        case .medium:
-            return Color.blue
-        case .low:
-            return Color.primary
-        }
-    }
     @Published var completed: Bool
+    
+    // MARK: Initializers
     internal init(id: UUID = UUID(), description: String, priority: TaskPriority, completed: Bool) {
         self.id = id
         self.description = description
         self.priority = priority
         self.completed = completed
+    }
+    
+    // MARK: Functions
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TaskCodingKeys.self)
+        try container.encode(description, forKey: .description)
+        try container.encode(priority.rawValue, forKey: .priority)
+        try container.encode(completed, forKey: .completed)
+    }
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: TaskCodingKeys.self)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.priority = try container.decode(TaskPriority.self, forKey: .priority)
+        self.completed = try container.decode(Bool.self, forKey: .completed)
     }
 }
 
