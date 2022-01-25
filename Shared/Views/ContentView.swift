@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var store: TaskStore
     @State private var showingAddTask = false
+    @State var showingCompletedTasks = true
     var body: some View {
         List {
             ForEach(store.tasks) { task in
@@ -25,9 +26,13 @@ struct ContentView: View {
                     showingAddTask = true
                 }
             }
-            
             ToolbarItem(placement: .navigationBarLeading) {
                EditButton()
+            }
+            ToolbarItem(placement: .bottomBar) {
+                Button(showingCompletedTasks ? "Hide Completed Tasks" : "Show Completed Tasks") {
+                    showingCompletedTasks.toggle()
+                }
             }
         }
         .sheet(isPresented: $showingAddTask) {
