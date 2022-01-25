@@ -17,19 +17,20 @@ struct ContentView: View {
         let _ = print("\(listShouldUpdate)")
         
         VStack {
-            Text("Filter by...")
-                .font(Font.caption.smallCaps())
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
-            
-            Picker("Priority", selection: $selectedPriorityForVisibleTasks) {
-                Text(VisibleTaskPriority.all.rawValue).tag(VisibleTaskPriority.all)
-                Text(VisibleTaskPriority.low.rawValue).tag(VisibleTaskPriority.low)
-                Text(VisibleTaskPriority.medium.rawValue).tag(VisibleTaskPriority.medium)
-                Text(VisibleTaskPriority.high.rawValue).tag(VisibleTaskPriority.high)
+            Menu {
+                Button(showingCompletedTasks ? "Hide Completed Tasks" : "Show Completed Tasks") {
+                    showingCompletedTasks.toggle()
+                }
+                Picker("Priority Filter", selection: $selectedPriorityForVisibleTasks) {
+                    Text(VisibleTaskPriority.all.rawValue).tag(VisibleTaskPriority.all)
+                    Text(VisibleTaskPriority.low.rawValue).tag(VisibleTaskPriority.low)
+                    Text(VisibleTaskPriority.medium.rawValue).tag(VisibleTaskPriority.medium)
+                    Text(VisibleTaskPriority.high.rawValue).tag(VisibleTaskPriority.high)
+                }
+                .pickerStyle(MenuPickerStyle())
+            } label: {
+                Image(systemName: "line.3.horizontal.circle")
             }
-            .pickerStyle(.segmented)
-            .padding(.horizontal)
             
             List {
                 ForEach(store.tasks) { task in
@@ -65,11 +66,6 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
-                }
-                ToolbarItem(placement: .bottomBar) {
-                    Button(showingCompletedTasks ? "Hide Completed Tasks" : "Show Completed Tasks") {
-                        showingCompletedTasks.toggle()
-                    }
                 }
             }
             .sheet(isPresented: $showingAddTask) {

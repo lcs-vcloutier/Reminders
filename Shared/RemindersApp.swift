@@ -16,7 +16,7 @@ struct RemindersApp: App {
             TabView {
                 NavigationView {ContentView(store: store)}
                 .tabItem {
-                    Label("List", systemImage: "list.dash")
+                    Label("List", systemImage: "list.bullet.circle.fill")
                 }
                 NavigationView {ImportantTaskView(store: store)}
                 .tabItem {
