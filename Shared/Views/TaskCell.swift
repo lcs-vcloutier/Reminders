@@ -9,6 +9,16 @@ import SwiftUI
 
 struct TaskCell: View {
     @ObservedObject var task: Task
+    var taskColor: Color {
+        switch task.priority {
+        case .high:
+            return Color.red
+        case .medium:
+            return Color.blue
+        case .low:
+            return Color.primary
+        }
+    }
     @Binding var triggerListUpdate: Bool
     var body: some View {
         HStack {
@@ -21,6 +31,6 @@ struct TaskCell: View {
                 }
             Text(task.description)
         }
-        .foregroundColor(task.taskColor)
+        .foregroundColor(self.taskColor)
     }
 }
