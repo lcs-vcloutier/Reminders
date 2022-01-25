@@ -34,10 +34,22 @@ struct ContentView: View {
             List {
                 ForEach(store.tasks) { task in
                     if showingCompletedTasks {
-                        TaskCell(task: task, triggerListUpdate: .constant(true))
+                        if selectedPriorityForVisibleTasks == .all {
+                            TaskCell(task: task, triggerListUpdate: .constant(true))
+                        } else {
+                            if task.priority.rawValue == selectedPriorityForVisibleTasks.rawValue {
+                                TaskCell(task: task, triggerListUpdate: .constant(true))
+                            }
+                        }
                     } else {
                         if !task.completed {
-                            TaskCell(task: task, triggerListUpdate: $listShouldUpdate)
+                            if selectedPriorityForVisibleTasks == .all {
+                                TaskCell(task: task, triggerListUpdate: .constant(true))
+                            } else {
+                                if task.priority.rawValue == selectedPriorityForVisibleTasks.rawValue {
+                                    TaskCell(task: task, triggerListUpdate: .constant(true))
+                                }
+                            }
                         }
                     }
                 }
