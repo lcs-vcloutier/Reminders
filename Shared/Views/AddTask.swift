@@ -32,6 +32,7 @@ struct AddTask: View {
                         store.saveTask(description: description, priority: priority)
                         showing = false
                     }
+                    .disabled(description.isEmpty)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
