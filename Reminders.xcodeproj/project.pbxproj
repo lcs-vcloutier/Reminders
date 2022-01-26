@@ -10,6 +10,7 @@
 		9249E63927A03BD3009B473B /* VisibleTaskPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9249E63827A03BD3009B473B /* VisibleTaskPriority.swift */; };
 		9249E63D27A04079009B473B /* SharedFunctionsAndConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9249E63C27A04079009B473B /* SharedFunctionsAndConstants.swift */; };
 		9249E64B27A04DA7009B473B /* ImportantTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9249E64A27A04DA7009B473B /* ImportantTaskView.swift */; };
+		9297B91E27A0D6DE00D6556F /* EditTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9297B91D27A0D6DE00D6556F /* EditTask.swift */; };
 		92BB36A22799C2500018629F /* RemindersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BB36922799C24E0018629F /* RemindersApp.swift */; };
 		92BB36A42799C2500018629F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BB36932799C24F0018629F /* ContentView.swift */; };
 		92BB36A62799C2500018629F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BB36942799C24F0018629F /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		9249E63827A03BD3009B473B /* VisibleTaskPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibleTaskPriority.swift; sourceTree = "<group>"; };
 		9249E63C27A04079009B473B /* SharedFunctionsAndConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFunctionsAndConstants.swift; sourceTree = "<group>"; };
 		9249E64A27A04DA7009B473B /* ImportantTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportantTaskView.swift; sourceTree = "<group>"; };
+		9297B91D27A0D6DE00D6556F /* EditTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTask.swift; sourceTree = "<group>"; };
 		92BB36922799C24E0018629F /* RemindersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersApp.swift; sourceTree = "<group>"; };
 		92BB36932799C24F0018629F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		92BB36942799C24F0018629F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				92BB36BA2799C6C40018629F /* TaskCell.swift */,
 				92BB36BD2799C8800018629F /* AddTask.swift */,
 				9249E64A27A04DA7009B473B /* ImportantTaskView.swift */,
+				9297B91D27A0D6DE00D6556F /* EditTask.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				92BB36B62799C3210018629F /* TaskPriority.swift in Sources */,
 				92BB36BB2799C6C40018629F /* TaskCell.swift in Sources */,
 				92BB36BE2799C8800018629F /* AddTask.swift in Sources */,
+				9297B91E27A0D6DE00D6556F /* EditTask.swift in Sources */,
 				92BB36A22799C2500018629F /* RemindersApp.swift in Sources */,
 				9249E63927A03BD3009B473B /* VisibleTaskPriority.swift in Sources */,
 			);

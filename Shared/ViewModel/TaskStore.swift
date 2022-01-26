@@ -46,6 +46,12 @@ class TaskStore: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    // Delete provided task from the "tasks" list
+    func delete(_ taskToDelete: Task) {
+        tasks.removeAll(where: { currentTask in
+            currentTask.id == taskToDelete.id
+        })
+    }
 }
 
 let testStore = TaskStore(tasks: testData)

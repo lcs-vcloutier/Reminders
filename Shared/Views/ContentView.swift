@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var store: TaskStore
     @State private var showingAddTask = false
+    @State private var showingEditTask = false
     @State var showingCompletedTasks = true
     @State var listShouldUpdate = false
     @State private var selectedPriorityForVisibleTasks: VisibleTaskPriority = .all
@@ -39,6 +40,9 @@ struct ContentView: View {
             }
             .onDelete(perform: store.deleteItems)
             .onMove(perform: store.moveItems)
+            .onTapGesture(count: 2) {
+                showingEditTask = true
+            }
         }
         .navigationTitle("Reminders")
         .toolbar {
@@ -71,6 +75,9 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingAddTask) {
             AddTask(store: store, showing: $showingAddTask)
+        }
+        .sheet(isPresented: $showingEditTask) {
+            EditTask(store: store, task: store.tasks[1], showing: $showingEditTask)
         }
     }
 }
