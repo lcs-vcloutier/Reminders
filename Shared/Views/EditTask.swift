@@ -13,7 +13,6 @@ struct EditTask: View {
     @State private var description = ""
     @State private var priority = TaskPriority.low
     @Binding var showing: Bool
-    let title = "Edit Reminder"
     var body: some View {
         NavigationView {
             VStack {
@@ -27,7 +26,7 @@ struct EditTask: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
             }
-            .navigationTitle("New Reminder")
+            .navigationTitle("Edit Reminder")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {

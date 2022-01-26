@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TaskCell: View {
     @ObservedObject var task: Task
+    @Binding var selectedTask: Task
+    @Binding var showingEditTask: Bool
     var taskColor: Color {
         switch task.priority {
         case .high:
@@ -32,5 +34,9 @@ struct TaskCell: View {
             Text(task.description)
         }
         .foregroundColor(self.taskColor)
+        .onTapGesture(count: 2) {
+            selectedTask = task
+            showingEditTask = true
+        }
     }
 }

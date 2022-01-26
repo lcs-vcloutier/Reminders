@@ -11,6 +11,7 @@ struct ContentView: View {
     @ObservedObject var store: TaskStore
     @State private var showingAddTask = false
     @State private var showingEditTask = false
+    @State private var selectedTask = Task(description: "", priority: .low, completed: false)
     @State var showingCompletedTasks = true
     @State var listShouldUpdate = false
     @State private var selectedPriorityForVisibleTasks: VisibleTaskPriority = .all
@@ -20,19 +21,19 @@ struct ContentView: View {
             ForEach(store.tasks) { task in
                 if showingCompletedTasks {
                     if selectedPriorityForVisibleTasks == .all {
-                        TaskCell(task: task, triggerListUpdate: .constant(true))
+                        TaskCell(task: task, selectedTask: $selectedTask, showingEditTask: $showingEditTask, triggerListUpdate: .constant(true))
                     } else {
                         if task.priority.rawValue == selectedPriorityForVisibleTasks.rawValue {
-                            TaskCell(task: task, triggerListUpdate: .constant(true))
+                            TaskCell(task: task, selectedTask: $selectedTask, showingEditTask: $showingEditTask, triggerListUpdate: .constant(true))
                         }
                     }
                 } else {
                     if !task.completed {
                         if selectedPriorityForVisibleTasks == .all {
-                            TaskCell(task: task, triggerListUpdate: .constant(true))
+                            TaskCell(task: task, selectedTask: $selectedTask, showingEditTask: $showingEditTask, triggerListUpdate: .constant(true))
                         } else {
                             if task.priority.rawValue == selectedPriorityForVisibleTasks.rawValue {
-                                TaskCell(task: task, triggerListUpdate: .constant(true))
+                                TaskCell(task: task, selectedTask: $selectedTask, showingEditTask: $showingEditTask, triggerListUpdate: .constant(true))
                             }
                         }
                     }
@@ -40,9 +41,6 @@ struct ContentView: View {
             }
             .onDelete(perform: store.deleteItems)
             .onMove(perform: store.moveItems)
-            .onTapGesture(count: 2) {
-                showingEditTask = true
-            }
         }
         .navigationTitle("Reminders")
         .toolbar {
@@ -77,7 +75,7 @@ struct ContentView: View {
             AddTask(store: store, showing: $showingAddTask)
         }
         .sheet(isPresented: $showingEditTask) {
-            EditTask(store: store, task: store.tasks[1], showing: $showingEditTask)
+            EditTask(store: store, task: selectedTask, showing: $showingEditTask)
         }
     }
 }

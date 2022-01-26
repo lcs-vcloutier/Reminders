@@ -10,6 +10,8 @@ import SwiftUI
 struct ImportantTaskView: View {
     @ObservedObject var store: TaskStore
     @State private var showingAddTask = false
+    @State private var showingEditTask = false
+    @State private var selectedTask = Task(description: "", priority: .low, completed: false)
     @State var showingCompletedTasks = true
     @State var listShouldUpdate = false
     var body: some View {
@@ -17,12 +19,12 @@ struct ImportantTaskView: View {
             ForEach(store.tasks) { task in
                 if showingCompletedTasks {
                     if task.priority == .high {
-                        TaskCell(task: task, triggerListUpdate: .constant(true))
+                        TaskCell(task: task, selectedTask: $selectedTask, showingEditTask: $showingEditTask, triggerListUpdate: .constant(true))
                     }
                 } else {
                     if !task.completed {
                         if task.priority == .high {
-                            TaskCell(task: task, triggerListUpdate: .constant(true))
+                            TaskCell(task: task, selectedTask: $selectedTask, showingEditTask: $showingEditTask, triggerListUpdate: .constant(true))
                         }
                     }
                 }
